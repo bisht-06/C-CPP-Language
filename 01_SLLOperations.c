@@ -23,7 +23,7 @@ void main()
 
         while(1)
         {
-            printf("Linked List Operations : \n\n");
+            printf("\nLinked List Operations : \n\n");
             printf("01. Append : \n");
             printf("02. Add Node at Begining : \n");
             printf("03. Add a Node after a Node : \n");
@@ -68,25 +68,76 @@ void main()
 
 void append()
 {
-
+    struct node* temp;
+    temp = (struct node*) malloc(sizeof(struct node));
+    printf("Enter Data : ");
+    scanf("%d",&temp->data);
+    temp->link = NULL;
+        if (root == NULL)
+        {
+            root = temp;
+        }
+        else
+        {
+            struct node* p;
+            p = root;
+            while(p->link != NULL)
+            {
+                p = p->link;
+            }
+            p->link = temp;
+        }
 }
+
 void addatbegin()
 {
 
 }
+
 void addatafter()
 {
 
 }
+
 int length()
 {
-
+    int count = 0;
+    struct node *temp;
+    temp = root;
+    while(temp != NULL)
+    {
+        count++;
+        temp = temp->link;
+    }
+    return count;
 }
+
 void delete()
 {
-
+    struct node *temp = root;
+    int loc;
+    printf("Enter a Node Location that you want to delete : ");
+    scanf("%d",&loc);
+    if (loc>length())
+    {
+        printf("Invalid node location!!\n\n");
+    }
+    else if(loc==1)
+    {
+        temp = root;
+        root = temp->link;
+        temp->link = NULL;
+        free(temp);
+    }
 }
+
 void display()
 {
-
+    struct node *temp;
+    temp = root;
+    while(temp != NULL)
+    {
+        printf("%d-->",temp->data);
+        temp = temp->link;
+    }
 }
