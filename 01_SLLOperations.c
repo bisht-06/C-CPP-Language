@@ -114,13 +114,13 @@ int length()
 
 void delete()
 {
-    struct node *temp = root;
+    struct node *temp;
     int loc;
-    printf("Enter a Node Location that you want to delete : ");
+    printf("Enter Deletion node : ");
     scanf("%d",&loc);
-    if (loc>length())
+    if(loc>length())
     {
-        printf("Invalid node location!!\n\n");
+        printf("\n Invalid Node Address.");
     }
     else if(loc==1)
     {
@@ -128,6 +128,20 @@ void delete()
         root = temp->link;
         temp->link = NULL;
         free(temp);
+    }
+    else
+    {
+        struct node *p = root, *q;
+        int i = 1;
+        while(i<loc-1)
+        {
+            p = p->link;
+            i++;
+        }
+        q = p->link;
+        p->link = q->link;
+        q->link = NULL;
+        free(q);
     }
 }
 
